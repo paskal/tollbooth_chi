@@ -14,7 +14,7 @@ package main
 import (
 	"net/http"
 
-	"github.com/didip/tollbooth/v7"
+	"github.com/didip/tollbooth/v8"
 	"github.com/pressly/chi"
 )
 

@@ -15,12 +15,13 @@ import (
 	"net/http"
 
 	"github.com/didip/tollbooth/v8"
+	"github.com/didip/tollbooth/v8/limiter"
 	"github.com/pressly/chi"
 )
 
 func main() {
 	// Create a limiter struct.
-	limiter := tollbooth.NewLimiter(1, nil)
+	lmt := tollbooth.NewLimiter(1, nil)
 
 	r := chi.NewRouter()
 
@@ -30,7 +31,7 @@ func main() {
 	})
 
 	// Use HTTPMiddleware directly for easier integration with chi.
-	r.Use(tollbooth.HTTPMiddleware(limiter))
+	r.Use(tollbooth.HTTPMiddleware(lmt))
 
 	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("Hello, world!"))
